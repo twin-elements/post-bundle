@@ -1,0 +1,8 @@
+{% extends '@TwinElementsAdmin/core/details.html.twig' %}
+
+{% set back_button_link = path('post_tag_index') %}
+
+{% block title %}{{ "post_tag.create_new_post_tag"|translate_admin }}{% endblock %}
+{% block buttons %}
+    {{ block('back_button') }}
+{% endblock %}

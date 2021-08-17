@@ -1,0 +1,41 @@
+{% extends '@TwinElementsAdmin/core/list.html.twig' %}
+
+
+{% block title %}{{ "post_category.post_categories"|trans({},null,admin_locale) }}{% endblock %}
+{% block buttons %}
+    {% set link = path('post_category_new') %}
+    {{ block('add_action_link') }}
+{% endblock %}
+
+
+{% block list %}
+    {{ block('list_ul_begin') }}
+    {{ block('list_li_header_begin') }}
+    {{ block('id_header') }}
+    <div class="col">{{ "post_category.title"|translate_admin }}</div>
+    {{ block('list_li_header_end') }}
+
+    {% for post_category in post_categories %}
+        {% set id = post_category.id %}
+
+        {{ block('list_li_begin') }}
+        {{ block('id') }}
+        <div class="col">
+            <div class="title">
+                <span>{{ post_category.title }}</span>
+                <div class="hidden-bar">
+                    <a href="{{ path('post_category_edit', {'id': post_category.id}) }}">{{ "actions.edit"|translate_admin }}</a>
+                    <span class="circle-separator"></span>
+                    <a href="{{ path('post_index', {'category': post_category.id}) }}">{{ "post.posts"|translate_admin }}</a>
+                </div>
+            </div>
+        </div>
+
+        {{ block('list_li_end') }}
+    {% else %}
+        {{ block('no_elements') }}
+    {% endfor %}
+    {{ block('list_ul_end') }}
+
+{% endblock %}
+

@@ -1,0 +1,68 @@
+{% extends '@TwinElementsAdmin/core/list.html.twig' %}
+
+
+{% block title %}
+    {% if post_category.title %}
+        {{ post_category.title }}
+    {% else %}
+        {{ post_category.translate(default_locale, false).title }}<br>
+        <span class="badge badge-warning small">{{ "cms.no_translation_for_this_locale"|trans({},null,admin_locale) }}</span>
+    {% endif %}
+{% endblock %}
+{% block buttons %}
+    {% set link = path('post_new', {'category': post_category.id}) %}
+    {{ block('add_action_link') }}
+
+    {% set link = path('post_tag_index') %}
+    {% set name = 'post_tag.post_tags_list'|translate_admin %}
+    {{ block('primary_link') }}
+{% endblock %}
+
+{% block list %}
+    {{ block('list_ul_begin') }}
+    {{ block('list_li_header_begin') }}
+    {{ block('id_header') }}
+
+    <div class="col">{{ "post.title"|translate_admin }}</div>
+    {{ block('list_changes_header') }}
+    {{ block('circle_header') }}
+
+
+    {{ block('list_li_header_end') }}
+
+    {% for post in posts %}
+        {% set id = post.id %}
+        {% set createdAt = post.createdAt %}
+        {% set createdBy = post.createdBy %}
+        {% set updatedAt = post.updatedAt %}
+        {% set updatedBy = post.updatedBy %}
+        {% set circle_active = post.enable %}
+
+        {{ block('list_li_begin') }}
+        {{ block('id') }}
+        <div class="col">
+            <div class="title">
+                <span>{{ post.title }} ({{ post.date|date }})</span>
+                {% if post.title is null %}
+                    <span class="badge badge-warning">{{ "cms.no_translations"|trans({},null,admin_locale) }}</span>
+                {% endif %}
+                <div class="hidden-bar">
+                    <a href="{{ path('post_edit', {'id': post.id}) }}">{{ "actions.edit"|translate_admin }}</a>
+                </div>
+            </div>
+        </div>
+        {{ block('changes_box_in_list') }}
+        {{ block('circle') }}
+
+        {{ block('list_li_end') }}
+    {% else %}
+        {{ block('no_elements') }}
+    {% endfor %}
+    {{ block('list_ul_end') }}
+    {% if posts.totalItemCount > posts.itemNumberPerPage %}
+        <div class="py-3 mt-3">
+            {{ knp_pagination_render(posts) }}
+        </div>
+    {% endif %}
+{% endblock %}
+

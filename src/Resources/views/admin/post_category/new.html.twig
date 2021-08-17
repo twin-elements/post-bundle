@@ -1,0 +1,8 @@
+{% extends '@TwinElementsAdmin/core/details.html.twig' %}
+
+{% set back_button_link = path('post_category_index') %}
+
+{% block title %}{{ "post_category.create_new_post_category"|trans({},null,admin_locale) }}{% endblock %}
+{% block buttons %}
+    {{ block('back_button') }}
+{% endblock %}

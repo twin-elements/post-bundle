@@ -1,0 +1,29 @@
+post_category:
+  module_name: Kategorie wpisów
+  post_categories: Kategorie wpisów
+  create_new_post_category: Tworzenie nowej kategorii wpisów
+  title: Nazwa kategorii
+  go_to_posts: Przejdź do wpisów
+
+post:
+  posts: Wpisy
+  create_new_post: Tworzenie nowego wpisu
+  teaser: Zajawka
+  content: Treść
+  date: Data
+  cover: Okładka
+  cover_help: 'Zalecane wymiary zdjęcia: %width%px x %height%px'
+  title: Nazwa wpisu
+  posts_list: Lista wpisów
+
+post_tag:
+  post_tags_list: Lista tagów
+  posts_tags_list: Tagi
+  placeholder: Wybierz tag
+  create_new_post_tag: Tworzenie nowego tagu
+  title: Nazwa
+
+role:
+  role_post_full: Wpisy pełny dostęp
+  role_post_view: Wpisy przeglądanie
+  role_post_edit: Wpisy edycja

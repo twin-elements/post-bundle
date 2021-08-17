@@ -1,0 +1,22 @@
+{% extends '@TwinElementsAdmin/core/details_with_sidebar.html.twig' %}
+{% set back_button_link = path('post_category_index') %}
+
+{% block title %}
+    {% if entity.title %}
+        {{ entity.title }}
+    {% else %}
+        {{ entity.translate(default_locale, false).title }}<br>
+        <span class="badge badge-warning small">{{ "cms.no_translation_for_this_locale"|trans({},null,admin_locale) }}</span>
+    {% endif %}
+{% endblock %}
+
+{% block buttons %}
+    {{ block('back_button') }}
+{% endblock %}
+
+{% block right_sidebar %}
+    <div class="cms-section">
+        <a href="{{ path('post_index', {'category': entity.id}) }}" class="btn btn-primary rounded-pill">{{ "post_category.go_to_posts"|translate_admin }}</a>
+    </div>
+    {{ block('delete_form') }}
+{% endblock %}

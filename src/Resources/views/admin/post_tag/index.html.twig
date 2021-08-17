@@ -1,0 +1,57 @@
+{% extends '@TwinElementsAdmin/core/list.html.twig' %}
+
+
+{% block title %}
+   {{ "post_tag.post_tags_list"|translate_admin }}
+{% endblock %}
+{% block buttons %}
+    {% set link = path('post_tag_new') %}
+    {{ block('add_action_link') }}
+{% endblock %}
+
+
+{% block list %}
+    {{ block('list_ul_begin') }}
+    {{ block('list_li_header_begin') }}
+    {{ block('id_header') }}
+
+    <div class="col">{{ "post_tag.title"|translate_admin }}</div>
+    {{ block('list_changes_header') }}
+
+
+    {{ block('list_li_header_end') }}
+
+    {% for postTag in postTags %}
+        {% set id = postTag.id %}
+        {% set createdAt = postTag.createdAt %}
+        {% set createdBy = postTag.createdBy %}
+        {% set updatedAt = postTag.updatedAt %}
+        {% set updatedBy = postTag.updatedBy %}
+
+        {{ block('list_li_begin') }}
+        {{ block('id') }}
+        <div class="col">
+            <div class="title">
+                <span>{{ postTag.title }}</span>
+                {% if postTag.title is null %}
+                    <span class="badge badge-warning">{{ "cms.no_translations"|translate_admin }}</span>
+                {% endif %}
+                <div class="hidden-bar">
+                    <a href="{{ path('post_tag_edit', {'id': postTag.id}) }}">{{ "actions.edit"|translate_admin }}</a>
+                </div>
+            </div>
+        </div>
+        {{ block('changes_box_in_list') }}
+
+        {{ block('list_li_end') }}
+    {% else %}
+        {{ block('no_elements') }}
+    {% endfor %}
+    {{ block('list_ul_end') }}
+    {% if postTags.totalItemCount > postTags.itemNumberPerPage %}
+        <div class="py-3 mt-3">
+            {{ knp_pagination_render(postTags) }}
+        </div>
+    {% endif %}
+{% endblock %}
+

@@ -1,6 +1,6 @@
 {
-    "name": "twin-elements/page-bundle",
-    "description": "Pages for CMS",
+    "name": "twin-elements/post-bundle",
+    "description": "Posts for CMS",
     "type": "symfony-bundle",
     "license": "MIT",
     "authors": [
@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "TwinElements\\ManualBundle\\": "src/"
+            "TwinElements\\PostBundle\\": "src/"
         }
     }
 }
