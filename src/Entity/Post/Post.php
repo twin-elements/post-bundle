@@ -148,14 +148,40 @@ class Post implements TranslatableInterface, LoggableInterface, SeoInterface
         $this->translate(null, false)->setEnable($enable);
     }
 
-    public function getCover()
+    public function getImage()
     {
-        return $this->translate(null, false)->getCover();
+        return $this->translate(null, false)->getImage();
     }
 
-    public function setCover($cover)
+    public function setImage($image)
     {
-        $this->translate(null, false)->setCover($cover);
+        $this->translate(null, false)->setImage($image);
+    }
+
+    /**
+     * @deprecated use getImage() instead
+     */
+    public function getCover()
+    {
+        return $this->translate(null, false)->getImage();
+    }
+
+    /**
+     * @deprecated use setImage() instead
+     */
+    public function setCover($image)
+    {
+        $this->translate(null, false)->setImage($image);
+    }
+
+    public function getThumbnail()
+    {
+        return $this->translate(null, false)->getThumbnail();
+    }
+
+    public function setThumbnail($thumbnail)
+    {
+        $this->translate(null, false)->setThumbnail($thumbnail);
     }
 
     public function getSlug()
