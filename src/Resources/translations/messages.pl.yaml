@@ -11,8 +11,10 @@ post:
   teaser: Zajawka
   content: Treść
   date: Data
-  cover: Okładka
-  cover_help: 'Zalecane wymiary zdjęcia: %width%px x %height%px'
+  thumbnail: Miniaturka
+  thumbnail_help: 'Zalecane wymiary miniaturki: %width%px x %height%px'
+  image: Okładka
+  image_help: 'Zalecane wymiary okładki: %width%px x %height%px'
   title: Nazwa wpisu
   posts_list: Lista wpisów
 

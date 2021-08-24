@@ -18,9 +18,15 @@
     {{ block('changes_details') }}
 
     {{ block('delete_form') }}
-    {% if entity.cover %}
-        {% set file_path = entity.cover %}
-        {% set section_title = "post.cover"|translate_admin %}
+    {% if entity.image %}
+        {% set file_path = entity.image %}
+        {% set section_title = "post.image"|translate_admin %}
+        {{ block('single_image_preview_template') }}
+    {% endif %}
+
+    {% if entity.thumbnail %}
+        {% set file_path = entity.thumbnail %}
+        {% set section_title = "post.thumbnail"|translate_admin %}
         {{ block('single_image_preview_template') }}
     {% endif %}
 {% endblock %}

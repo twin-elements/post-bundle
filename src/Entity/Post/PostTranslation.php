@@ -8,6 +8,8 @@ use App\Model\EnableInterface;
 use App\Model\EnableTrait;
 use App\Model\ImageAlbumInterface;
 use App\Model\ImageAlbumTrait;
+use App\Model\ImageInterface;
+use App\Model\ImageTrait;
 use App\Model\SeoInterface;
 use App\Model\SeoTrait;
 use App\Model\TitleTrait;
@@ -31,7 +33,8 @@ class PostTranslation implements
     EnableInterface,
     ImageAlbumInterface,
     AttachmentsInterface,
-    SeoInterface
+    SeoInterface,
+    ImageInterface
 {
     use TranslationTrait,
         TimestampableTrait,
@@ -40,7 +43,8 @@ class PostTranslation implements
         ImageAlbumTrait,
         AttachmentsTrait,
         TitleTrait,
-        SeoTrait;
+        SeoTrait,
+        ImageTrait;
 
     /**
      * @ORM\Id()
@@ -71,7 +75,7 @@ class PostTranslation implements
      * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $cover;
+    private $thumbnail;
 
     /**
      * @return mixed
@@ -124,16 +128,16 @@ class PostTranslation implements
     /**
      * @return string|null
      */
-    public function getCover(): ?string
+    public function getThumbnail(): ?string
     {
-        return $this->cover;
+        return $this->thumbnail;
     }
 
     /**
-     * @param string|null $cover
+     * @param string|null $thumbnail
      */
-    public function setCover(?string $cover): void
+    public function setThumbnail(?string $thumbnail): void
     {
-        $this->cover = $cover;
+        $this->thumbnail = $thumbnail;
     }
 }
