@@ -54,12 +54,11 @@ class PostType extends AbstractType
             ])
             ->add('image', TEUploadType::class, [
                 'label' => $this->translator->translate('post.image'),
-                'help' => $this->translator->translate('post.image_help', ['%width%' => $this->coverSize[0], '%height%' => $this->coverSize[1]]),
                 'required' => false
             ])
             ->add('thumbnail', TEUploadType::class, [
                 'label' => $this->translator->translate('post.thumbnail'),
-//                'help' => $this->translator->translate('post.thumbnail_help', ['%width%' => $this->coverSize[0], '%height%' => $this->coverSize[1]]),
+                'help' => $this->translator->translate('post.image_help', ['%width%' => $this->coverSize[0], '%height%' => $this->coverSize[1]]),
                 'required' => false
             ])
             ->add('teaser', TextareaType::class, [
