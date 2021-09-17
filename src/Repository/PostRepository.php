@@ -14,15 +14,21 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
-    public function findIndexListItemsByCategory($locale, $category)
+    public function findPostsByCategoryQB(string $locale, int $category)
     {
         $qb = $this->createQueryBuilder('post');
         $qb
             ->select(['post', 'post_translations'])
             ->leftJoin('post.translations', 'post_translations')
             ->where($qb->expr()->eq('post.parent', $category))
-            ->orderBy('post.date', 'desc')
-        ;
+            ->orderBy('post.date', 'desc');
+
+        return $qb;
+    }
+
+    public function findIndexListItemsByCategory(string $locale, int $category)
+    {
+        $qb = $this->findPostsByCategoryQB($locale, $category);
 
         return $qb->getQuery();
     }
@@ -102,7 +108,7 @@ class PostRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function findForArchiveDataByCategory(?int $categoryId)
+    public function findForArchiveDataByCategory(?int $categoryId, string $locale = null)
     {
         $qb = $this->createQueryBuilder('post');
         $qb->select(['post.id', 'post.date'])
@@ -112,6 +118,12 @@ class PostRepository extends ServiceEntityRepository
             ->andWhere('post.parent = :parent')
             ->setParameter('parent', $categoryId)
             ->orderBy('post.date', 'DESC');
+
+        if ($locale) {
+            $qb
+                ->andWhere('translations.locale = :locale')
+                ->setParameter('locale', $locale);
+        }
 
         return $qb->getQuery()->getResult();
     }

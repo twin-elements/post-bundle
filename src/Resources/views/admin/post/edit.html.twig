@@ -1,5 +1,5 @@
 {% extends '@TwinElementsAdmin/core/details_with_sidebar.html.twig' %}
-{% set back_button_link = path('post_index') %}
+{% set back_button_link = path('post_index', {'category': entity.parent.id}) %}
 
 {% block title %}
     {% if entity.title %}

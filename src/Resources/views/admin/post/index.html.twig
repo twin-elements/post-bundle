@@ -18,6 +18,38 @@
     {{ block('primary_link') }}
 {% endblock %}
 
+{% block top_sidebar %}
+    {% set queryParams = app.request.query.all %}
+    <div class="d-flex justify-content-between mb-6">
+        <div class="dropdown">
+            <button type="button" class="btn btn-primary dropdown-toggle" id="setPagesLimit" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                {% if limit %}<span class="badge">
+                    ({{ limit }})</span> {% endif %}Wyświetl na stronie
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="setPagesLimit">
+                <a class="dropdown-item{% if limit == 20 %} active{% endif %}"
+                   href="{{ path('post_index', queryParams|merge({limit: 20, category: post_category.id})) }}">20 stron</a>
+                <a class="dropdown-item{% if limit == 40 %} active{% endif %}"
+                   href="{{ path('post_index', queryParams|merge({limit: 40, category: post_category.id})) }}">40 stron</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item{% if limit == 9999 %} active{% endif %}"
+                   href="{{ path('post_index', queryParams|merge({limit: 9999, category: post_category.id})) }}">Wszystkie</a>
+            </div>
+        </div>
+        <div>
+            {% form_theme searchForm 'bootstrap_4_layout.html.twig' %}
+            {{ form_start(searchForm) }}
+            <div class="d-flex align-items-center">
+                {{ form_widget(searchForm.title) }}
+                {{ form_widget(searchForm.button) }}
+            </div>
+
+            {{ form_end(searchForm) }}
+        </div>
+    </div>
+{% endblock %}
+
 {% block list %}
     {{ block('list_ul_begin') }}
     {{ block('list_li_header_begin') }}
@@ -47,7 +79,7 @@
                     <span class="badge badge-warning">{{ "cms.no_translations"|trans({},null,admin_locale) }}</span>
                 {% endif %}
                 <div class="hidden-bar">
-                    <a href="{{ path('post_edit', {'id': post.id}) }}">{{ "actions.edit"|translate_admin }}</a>
+                    <a href="{{ path('post_edit', {'id': post.id, 'category': post_category.id}) }}">{{ "actions.edit"|translate_admin }}</a>
                 </div>
             </div>
         </div>
