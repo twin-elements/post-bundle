@@ -4,9 +4,9 @@
 namespace TwinElements\PostBundle\Entity\PostCategory;
 
 
-use App\Model\SeoInterface;
-use App\Model\SeoTrait;
-use App\Model\SeoTranslatableTrait;
+use TwinElements\SeoBundle\Model\SeoInterface;
+use TwinElements\SeoBundle\Model\SeoTrait;
+use TwinElements\SeoBundle\Model\SeoTranslatableTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\BlameableInterface;
 use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;

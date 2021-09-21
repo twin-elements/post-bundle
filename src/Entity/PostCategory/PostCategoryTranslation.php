@@ -2,16 +2,16 @@
 
 namespace TwinElements\PostBundle\Entity\PostCategory;
 
-use App\Model\EnableInterface;
-use App\Model\EnableTrait;
-use App\Model\SeoInterface;
-use App\Model\SeoTrait;
-use App\Model\TitleInterface;
-use App\Model\TitleTrait;
+use TwinElements\AdminBundle\Entity\Traits\EnableInterface;
+use TwinElements\AdminBundle\Entity\Traits\EnableTrait;
+use TwinElements\SeoBundle\Model\SeoInterface;
+use TwinElements\AdminBundle\Entity\Traits\TitleInterface;
+use TwinElements\AdminBundle\Entity\Traits\TitleTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TranslationInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Knp\DoctrineBehaviors\Model\Translatable\TranslationTrait;
+use TwinElements\SeoBundle\Model\SeoTrait;
 
 /**
  * @ORM\Entity()

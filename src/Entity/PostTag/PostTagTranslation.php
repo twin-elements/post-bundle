@@ -2,11 +2,11 @@
 
 namespace TwinElements\PostBundle\Entity\PostTag;
 
-use App\Model\IdTrait;
-use App\Model\TitleInterface;
-use App\Model\TitleSlugInterface;
-use App\Model\TitleSlugTrait;
-use App\Model\TitleTrait;
+use TwinElements\AdminBundle\Entity\Traits\IdTrait;
+use TwinElements\AdminBundle\Entity\Traits\TitleInterface;
+use TwinElements\AdminBundle\Entity\Traits\TitleSlugInterface;
+use TwinElements\AdminBundle\Entity\Traits\TitleSlugTrait;
+use TwinElements\AdminBundle\Entity\Traits\TitleTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TranslationInterface;
 use Knp\DoctrineBehaviors\Model\Translatable\TranslationTrait;

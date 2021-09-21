@@ -2,7 +2,7 @@
 
 namespace TwinElements\PostBundle\Form;
 
-use App\Form\Admin\SeoType;
+use TwinElements\SeoBundle\Form\Admin\SeoType;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;

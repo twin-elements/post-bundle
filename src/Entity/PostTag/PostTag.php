@@ -2,9 +2,9 @@
 
 namespace TwinElements\PostBundle\Entity\PostTag;
 
-use App\Model\IdTrait;
-use App\Model\TranslatableTitle;
-use App\Model\TranslatableTitleSlug;
+use TwinElements\AdminBundle\Entity\Traits\IdTrait;
+use TwinElements\AdminBundle\Entity\Traits\TranslatableTitle;
+use TwinElements\AdminBundle\Entity\Traits\TranslatableTitleSlug;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\BlameableInterface;
 use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;

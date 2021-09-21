@@ -2,8 +2,6 @@
 
 namespace TwinElements\PostBundle\Entity\Post;
 
-use App\Model\SeoInterface;
-use App\Model\SeoTranslatableTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -13,6 +11,8 @@ use Knp\DoctrineBehaviors\Model\Loggable\LoggableTrait;
 use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
 use TwinElements\PostBundle\Entity\PostCategory\PostCategory;
 use TwinElements\PostBundle\Entity\PostTag\PostTag;
+use TwinElements\SeoBundle\Model\SeoInterface;
+use TwinElements\SeoBundle\Model\SeoTranslatableTrait;
 
 /**
  * @ORM\Entity(repositoryClass="TwinElements\PostBundle\Repository\PostRepository")
