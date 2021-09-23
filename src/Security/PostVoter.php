@@ -2,8 +2,6 @@
 
 namespace TwinElements\PostBundle\Security;
 
-use Doctrine\DBAL\Schema\View;
-use phpDocumentor\Reflection\DocBlock\Tags\Reference\Url;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\Security;
