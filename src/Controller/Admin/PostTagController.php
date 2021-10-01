@@ -12,7 +12,7 @@ use TwinElements\AdminBundle\Service\AdminTranslator;
 use TwinElements\PostBundle\Entity\PostTag\PostTag;
 use TwinElements\PostBundle\Form\PostTagType;
 use TwinElements\PostBundle\Repository\PostTagRepository;
-use TwinElements\PostBundle\Security\PostVoter;
+use TwinElements\PostBundle\Security\SliderVoter;
 
 /**
  * @Route("/post-tag")

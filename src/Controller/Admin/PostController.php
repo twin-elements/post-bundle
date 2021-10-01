@@ -7,7 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use TwinElements\AdminBundle\Helper\Flashes;
 use TwinElements\AdminBundle\Model\CrudControllerTrait;
 use TwinElements\PostBundle\Entity\Post\Post;
 use TwinElements\PostBundle\Entity\Post\SearchPost;

@@ -12,7 +12,7 @@ use TwinElements\AdminBundle\Service\AdminTranslator;
 use TwinElements\PostBundle\Entity\PostCategory\PostCategory;
 use TwinElements\PostBundle\Form\PostCategoryType;
 use TwinElements\PostBundle\Repository\PostCategoryRepository;
-use TwinElements\PostBundle\Role\PostRoles;
+use TwinElements\PostBundle\Role\SliderRoles;
 
 /**
  * @Route("/post-category")
