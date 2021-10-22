@@ -6,7 +6,7 @@
         {{ post_category.title }}
     {% else %}
         {{ post_category.translate(default_locale, false).title }}<br>
-        <span class="badge badge-warning small">{{ "cms.no_translation_for_this_locale"|trans({},null,admin_locale) }}</span>
+        <span class="badge badge-warning small">{{ "admin.no_translation_for_this_locale"|translate_admin }}</span>
     {% endif %}
 {% endblock %}
 {% block buttons %}
@@ -74,13 +74,12 @@
         {{ block('id') }}
         <div class="col">
             <div class="title">
-                <span>{{ post.title }} ({{ post.date|date }})</span>
-                {% if post.title is null %}
-                    <span class="badge badge-warning">{{ "cms.no_translations"|trans({},null,admin_locale) }}</span>
-                {% endif %}
-                <div class="hidden-bar">
-                    <a href="{{ path('post_edit', {'id': post.id, 'category': post_category.id}) }}">{{ "actions.edit"|translate_admin }}</a>
-                </div>
+                <a href="{{ path('post_edit', {'id': post.id, 'category': post_category.id}) }}">
+                    <span>{{ post.title }} ({{ post.date|date }})</span>
+                    {% if post.title is null %}
+                        <span class="badge badge-warning">{{ "admin.no_translations"|translate_admin }}</span>
+                    {% endif %}
+                </a>
             </div>
         </div>
         {{ block('changes_box_in_list') }}

@@ -22,15 +22,14 @@
         {{ block('id') }}
         <div class="col">
             <div class="title">
-                <span>{{ post_category.title }}</span>
-                <div class="hidden-bar">
-                    <a href="{{ path('post_category_edit', {'id': post_category.id}) }}">{{ "actions.edit"|translate_admin }}</a>
-                    <span class="circle-separator"></span>
-                    <a href="{{ path('post_index', {'category': post_category.id}) }}">{{ "post.posts"|translate_admin }}</a>
-                </div>
+                <a href="{{ path('post_category_edit', {'id': post_category.id}) }}">
+                    <span>{{ post_category.title }}</span>
+                </a>
             </div>
         </div>
-
+        <div class="flex-grow-1"></div>
+        <a href="{{ path('post_index', {'category': post_category.id}) }}"
+           class="btn btn-primary btn-sm">{{ "post_category.go_to_posts"|translate_admin }}</a>
         {{ block('list_li_end') }}
     {% else %}
         {{ block('no_elements') }}

@@ -32,13 +32,12 @@
         {{ block('id') }}
         <div class="col">
             <div class="title">
-                <span>{{ postTag.title }}</span>
-                {% if postTag.title is null %}
-                    <span class="badge badge-warning">{{ "cms.no_translations"|translate_admin }}</span>
-                {% endif %}
-                <div class="hidden-bar">
-                    <a href="{{ path('post_tag_edit', {'id': postTag.id}) }}">{{ "actions.edit"|translate_admin }}</a>
-                </div>
+                <a href="{{ path('post_tag_edit', {'id': postTag.id}) }}">
+                    <span>{{ postTag.title }}</span>
+                    {% if postTag.title is null %}
+                        <span class="badge badge-warning">{{ "cms.no_translations"|translate_admin }}</span>
+                    {% endif %}
+                </a>
             </div>
         </div>
         {{ block('changes_box_in_list') }}
