@@ -1,12 +1,11 @@
 {% extends '@TwinElementsAdmin/core/list.html.twig' %}
 
+{% block title %}{{ "post_category.post_categories"|translate_admin }}{% endblock %}
 
-{% block title %}{{ "post_category.post_categories"|trans({},null,admin_locale) }}{% endblock %}
 {% block buttons %}
     {% set link = path('post_category_new') %}
     {{ block('add_action_link') }}
 {% endblock %}
-
 
 {% block list %}
     {{ block('list_ul_begin') }}

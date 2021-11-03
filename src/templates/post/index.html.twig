@@ -6,7 +6,7 @@
         {{ post_category.title }}
     {% else %}
         {{ post_category.translate(default_locale, false).title }}<br>
-        <span class="badge badge-warning small">{{ "admin.no_translation_for_this_locale"|translate_admin }}</span>
+        {{ block('title_no_translation_badge') }}
     {% endif %}
 {% endblock %}
 {% block buttons %}

@@ -34,7 +34,7 @@ class PostCategoryController extends AbstractController
             $translator->translate('post_category.post_categories') => null
         ]);
 
-        return $this->render('@TwinElementsPost/admin/post_category/index.html.twig', [
+        return $this->render('@TwinElementsPost/post_category/index.html.twig', [
             'post_categories' => $postCategories
         ]);
     }
@@ -82,7 +82,7 @@ class PostCategoryController extends AbstractController
             $this->adminTranslator->translate('post_category.create_new_post_category') => null
         ]);
 
-        return $this->render('@TwinElementsPost/admin/post_category/new.html.twig', [
+        return $this->render('@TwinElementsPost/post_category/new.html.twig', [
             'post_category' => $postCategory,
             'form' => $form->createView(),
         ]);
@@ -124,7 +124,7 @@ class PostCategoryController extends AbstractController
             $postCategory->getTitle() => null
         ]);
 
-        return $this->render('@TwinElementsPost/admin/post_category/edit.html.twig', [
+        return $this->render('@TwinElementsPost/post_category/edit.html.twig', [
             'entity' => $postCategory,
             'form' => $form->createView(),
             'delete_form' => $deleteForm->createView(),

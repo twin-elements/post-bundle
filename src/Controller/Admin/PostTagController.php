@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use TwinElements\AdminBundle\Model\CrudControllerTrait;
-use TwinElements\AdminBundle\Service\AdminTranslator;
 use TwinElements\PostBundle\Entity\PostTag\PostTag;
 use TwinElements\PostBundle\Form\PostTagType;
 use TwinElements\PostBundle\Repository\PostTagRepository;
@@ -30,8 +29,6 @@ class PostTagController extends AbstractController
         PaginatorInterface $paginator
     ): Response
     {
-        $post = new PostTag();
-
         $postTagsQuery = $postTagRepository->findIndexListItems($request->getLocale());
         $postTags = $paginator->paginate($postTagsQuery, $request->query->getInt('page', 1), 20);
 
@@ -39,11 +36,10 @@ class PostTagController extends AbstractController
             $this->adminTranslator->translate('post_tag.post_tags_list') => null
         ]);
 
-        return $this->render('@TwinElementsPost/admin/post_tag/index.html.twig', [
+        return $this->render('@TwinElementsPost/post_tag/index.html.twig', [
             'postTags' => $postTags
         ]);
     }
-
 
     /**
      * @Route("/new", name="post_tag_new", methods="GET|POST")
@@ -85,12 +81,11 @@ class PostTagController extends AbstractController
             $this->adminTranslator->translate('post_tag.create_new_post_tag') => null
         ]);
 
-        return $this->render('@TwinElementsPost/admin/post_tag/new.html.twig', [
+        return $this->render('@TwinElementsPost/post_tag/new.html.twig', [
             'postTag' => $postTag,
             'form' => $form->createView(),
         ]);
     }
-
 
     /**
      * @Route("/{id}/edit", name="post_tag_edit", methods="GET|POST")
@@ -125,7 +120,7 @@ class PostTagController extends AbstractController
             $postTag->getTitle() => null
         ]);
 
-        return $this->render('@TwinElementsPost/admin/post_tag/edit.html.twig', [
+        return $this->render('@TwinElementsPost/post_tag/edit.html.twig', [
             'entity' => $postTag,
             'form' => $form->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -159,7 +154,6 @@ class PostTagController extends AbstractController
 
         return $this->redirectToRoute('post_tag_index');
     }
-
 
     private function createDeleteForm(PostTag $postTag)
     {
