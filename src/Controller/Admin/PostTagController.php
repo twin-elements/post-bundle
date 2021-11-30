@@ -62,7 +62,7 @@ class PostTagController extends AbstractController
 
                 $this->crudLogger->createLog($postTag->getId(), $postTag->getTitle());
 
-                $this->flashes->successMessage();
+                $this->flashes->successMessage($this->adminTranslator->translate('admin.success_operation'));;
 
                 if ('save' === $form->getClickedButton()->getName()) {
                     return $this->redirectToRoute('post_tag_edit', array('id' => $postTag->getId()));
@@ -103,7 +103,7 @@ class PostTagController extends AbstractController
                 $this->getDoctrine()->getManager()->flush();
                 $this->crudLogger->createLog($postTag->getId(), $postTag->getTitle());
 
-                $this->flashes->successMessage();
+                $this->flashes->successMessage($this->adminTranslator->translate('admin.success_operation'));;
             } catch (\Exception $exception) {
                 $this->flashes->errorMessage($exception->getMessage());
             }
@@ -144,7 +144,7 @@ class PostTagController extends AbstractController
                 $em->remove($postTag);
                 $em->flush();
 
-                $this->flashes->successMessage();
+                $this->flashes->successMessage($this->adminTranslator->translate('admin.success_operation'));;
                 $this->crudLogger->createLog($id, $title);
 
             } catch (\Exception $exception) {

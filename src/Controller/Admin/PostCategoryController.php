@@ -63,7 +63,7 @@ class PostCategoryController extends AbstractController
 
                 $this->crudLogger->createLog($postCategory->getId(), $postCategory->getTitle());
 
-                $this->flashes->successMessage();
+                $this->flashes->successMessage($this->adminTranslator->translate('admin.success_operation'));;
 
                 if ('save' === $form->getClickedButton()->getName()) {
                     return $this->redirectToRoute('post_category_edit', array('id' => $postCategory->getId()));
@@ -107,7 +107,7 @@ class PostCategoryController extends AbstractController
                 $this->getDoctrine()->getManager()->flush();
                 $this->crudLogger->createLog($postCategory->getId(), $postCategory->getTitle());
 
-                $this->flashes->successMessage();
+                $this->flashes->successMessage($this->adminTranslator->translate('admin.success_operation'));;
             } catch (\Exception $exception) {
                 $this->flashes->errorMessage($exception->getMessage());
             }
@@ -150,7 +150,7 @@ class PostCategoryController extends AbstractController
                 $em->remove($postCategory);
                 $em->flush();
 
-                $this->flashes->successMessage();
+                $this->flashes->successMessage($this->adminTranslator->translate('admin.success_operation'));;
                 $this->crudLogger->createLog($id, $title);
 
             } catch (\Exception $exception) {
