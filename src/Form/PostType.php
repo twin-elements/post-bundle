@@ -2,6 +2,7 @@
 
 namespace TwinElements\PostBundle\Form;
 
+use TwinElements\FormExtensions\Type\FileWithTitleType;
 use TwinElements\SeoBundle\Form\Admin\SeoType;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Form\AbstractType;
@@ -76,7 +77,7 @@ class PostType extends AbstractType
                 'required' => false
             ])
             ->add('imageAlbum', TECollectionType::class, [
-                'entry_type' => TEUploadType::class,
+                'entry_type' => FileWithTitleType::class,
                 'entry_options' => [
                     'file_type' => 'image',
                     'label' => $this->translator->translate('admin_type.image_album.choose_image')
