@@ -96,7 +96,9 @@ class PostController extends AbstractController
     ): Response
     {
         $post = new Post();
-        $this->denyAccessUnlessGranted(PostVoter::FULL, $post);
+        if(!$this->isGranted(PostVoter::FULL, $post) && !$this->isGranted(PostVoter::OWN, $post)){
+            throw $this->createAccessDeniedException();
+        }
 
         /**
          * @var PostCategory $postCategory
@@ -159,7 +161,9 @@ class PostController extends AbstractController
      */
     public function edit(int $category, Request $request, Post $post): Response
     {
-        $this->denyAccessUnlessGranted(PostVoter::EDIT, $post);
+        if(!$this->isGranted(PostVoter::EDIT, $post) && !$this->isGranted(PostVoter::OWN, $post)){
+            throw $this->createAccessDeniedException();
+        }
 
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
@@ -207,7 +211,9 @@ class PostController extends AbstractController
      */
     public function delete(int $category, Request $request, Post $post): Response
     {
-        $this->denyAccessUnlessGranted(PostVoter::FULL, $post);
+        if(!$this->isGranted(PostVoter::FULL, $post) && !$this->isGranted(PostVoter::OWN, $post)){
+            throw $this->createAccessDeniedException();
+        }
 
         $form = $this->createDeleteForm($post);
         $form->handleRequest($request);

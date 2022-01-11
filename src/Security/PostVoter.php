@@ -15,6 +15,7 @@ class PostVoter extends Voter
     const FULL = 'full';
     const VIEW = 'view';
     const EDIT = 'edit';
+    const OWN = 'own';
 
     private $security;
 
@@ -25,7 +26,7 @@ class PostVoter extends Voter
 
     protected function supports($attribute, $subject)
     {
-        return in_array($attribute, [self::FULL, self::VIEW, self::EDIT]) && $subject instanceof Post;
+        return in_array($attribute, [self::FULL, self::VIEW, self::EDIT, self::OWN]) && $subject instanceof Post;
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
@@ -42,8 +43,11 @@ class PostVoter extends Voter
             case self::EDIT;
                 return $this->canEdit();
 
+            case self::OWN;
+                return $this->onlyOwnPosts($subject, $user);
+
             case self::VIEW;
-                return $this->canView();
+                return $this->canView($subject, $user);
         }
 
         throw new \LogicException('This code should not be reached!');
@@ -71,9 +75,24 @@ class PostVoter extends Voter
         }
     }
 
-    private function canView()
+    private function onlyOwnPosts(Post $post, AdminUser $user)
+    {
+        if (
+            $this->security->isGranted(PostRoles::ROLE_POST_OWN)
+            &&
+            (is_null($post->getCreatedBy()) || $post->getCreatedBy()->getId() === $user->getId())
+        ) {
+            return true;
+        }
+    }
+
+    private function canView(Post $post, AdminUser $user)
     {
         if ($this->canEdit()) {
+            return true;
+        }
+
+        if ($this->onlyOwnPosts($post, $user)) {
             return true;
         }
 

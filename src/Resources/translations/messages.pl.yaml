@@ -26,6 +26,7 @@ post_tag:
   title: Nazwa
 
 role:
-  role_post_full: Wpisy pełny dostęp
-  role_post_view: Wpisy przeglądanie
-  role_post_edit: Wpisy edycja
+  role_post_full: "Wpisy: pełny dostęp"
+  role_post_view: "Wpisy: przeglądanie"
+  role_post_edit: "Wpisy: edycja"
+  role_post_own: "Wpisy: tyko własne"
