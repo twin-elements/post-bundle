@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use TwinElements\AdminBundle\Model\CrudControllerTrait;
 use TwinElements\AdminBundle\Role\AdminUserRole;
-use TwinElements\AdminBundle\Service\AdminTranslator;
+use TwinElements\Component\AdminTranslator\AdminTranslator;
 use TwinElements\PostBundle\Entity\PostCategory\PostCategory;
 use TwinElements\PostBundle\Form\PostCategoryType;
 use TwinElements\PostBundle\Repository\PostCategoryRepository;

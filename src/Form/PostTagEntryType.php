@@ -6,7 +6,7 @@ namespace TwinElements\PostBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use TwinElements\AdminBundle\Service\AdminTranslator;
+use TwinElements\Component\AdminTranslator\AdminTranslator;
 use TwinElements\FormExtensions\Type\TEEntityType;
 use TwinElements\PostBundle\Entity\PostTag\PostTag;
 

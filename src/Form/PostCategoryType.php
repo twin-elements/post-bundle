@@ -8,7 +8,7 @@ use TwinElements\FormExtensions\Type\SaveButtonsType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use TwinElements\AdminBundle\Service\AdminTranslator;
+use TwinElements\Component\AdminTranslator\AdminTranslator;
 use TwinElements\PostBundle\Entity\PostCategory\PostCategory;
 
 class PostCategoryType extends AbstractType
