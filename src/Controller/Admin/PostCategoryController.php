@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use TwinElements\AdminBundle\Model\CrudControllerTrait;
 use TwinElements\AdminBundle\Role\AdminUserRole;
 use TwinElements\Component\AdminTranslator\AdminTranslator;
+use TwinElements\Component\CrudLogger\CrudLogger;
 use TwinElements\PostBundle\Entity\PostCategory\PostCategory;
 use TwinElements\PostBundle\Form\PostCategoryType;
 use TwinElements\PostBundle\Repository\PostCategoryRepository;
@@ -61,7 +62,7 @@ class PostCategoryController extends AbstractController
                 $postCategory->mergeNewTranslations();
                 $em->flush();
 
-                $this->crudLogger->createLog($postCategory->getId(), $postCategory->getTitle());
+                $this->crudLogger->createLog(PostCategory::class, CrudLogger::CreateAction, $postCategory->getId());
 
                 $this->flashes->successMessage($this->adminTranslator->translate('admin.success_operation'));;
 
@@ -105,7 +106,7 @@ class PostCategoryController extends AbstractController
             try {
                 $postCategory->mergeNewTranslations();
                 $this->getDoctrine()->getManager()->flush();
-                $this->crudLogger->createLog($postCategory->getId(), $postCategory->getTitle());
+                $this->crudLogger->createLog(PostCategory::class, CrudLogger::EditAction, $postCategory->getId());
 
                 $this->flashes->successMessage($this->adminTranslator->translate('admin.success_operation'));;
             } catch (\Exception $exception) {
@@ -151,7 +152,7 @@ class PostCategoryController extends AbstractController
                 $em->flush();
 
                 $this->flashes->successMessage($this->adminTranslator->translate('admin.success_operation'));;
-                $this->crudLogger->createLog($id, $title);
+                $this->crudLogger->createLog(PostCategory::class, CrudLogger::DeleteAction, $postCategory->getId());
 
             } catch (\Exception $exception) {
                 $this->flashes->errorMessage($exception->getMessage());

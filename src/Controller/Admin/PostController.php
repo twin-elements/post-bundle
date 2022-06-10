@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use TwinElements\AdminBundle\Model\CrudControllerTrait;
+use TwinElements\Component\CrudLogger\CrudLogger;
 use TwinElements\PostBundle\Entity\Post\Post;
 use TwinElements\PostBundle\Entity\Post\SearchPost;
 use TwinElements\PostBundle\Entity\PostCategory\PostCategory;
@@ -96,7 +97,7 @@ class PostController extends AbstractController
     ): Response
     {
         $post = new Post();
-        if(!$this->isGranted(PostVoter::FULL, $post) && !$this->isGranted(PostVoter::OWN, $post)){
+        if (!$this->isGranted(PostVoter::FULL, $post) && !$this->isGranted(PostVoter::OWN, $post)) {
             throw $this->createAccessDeniedException();
         }
 
@@ -104,7 +105,7 @@ class PostController extends AbstractController
          * @var PostCategory $postCategory
          */
         $postCategory = $postCategoryRepository->find($category);
-        if(is_null($postCategory)){
+        if (is_null($postCategory)) {
             throw new \Exception('Brak kategorii');
         }
 
@@ -122,7 +123,7 @@ class PostController extends AbstractController
                 $post->mergeNewTranslations();
                 $em->flush();
 
-                $this->crudLogger->createLog($post->getId(), $post->getTitle());
+                $this->crudLogger->createLog(Post::class, CrudLogger::CreateAction, $post->getId());
 
                 $this->flashes->successMessage($this->adminTranslator->translate('admin.success_operation'));;
 
@@ -161,7 +162,7 @@ class PostController extends AbstractController
      */
     public function edit(int $category, Request $request, Post $post): Response
     {
-        if(!$this->isGranted(PostVoter::EDIT, $post) && !$this->isGranted(PostVoter::OWN, $post)){
+        if (!$this->isGranted(PostVoter::EDIT, $post) && !$this->isGranted(PostVoter::OWN, $post)) {
             throw $this->createAccessDeniedException();
         }
 
@@ -174,7 +175,7 @@ class PostController extends AbstractController
             try {
                 $post->mergeNewTranslations();
                 $this->getDoctrine()->getManager()->flush();
-                $this->crudLogger->createLog($post->getId(), $post->getTitle());
+                $this->crudLogger->createLog(Post::class, CrudLogger::EditAction, $post->getId());
 
                 $this->flashes->successMessage($this->adminTranslator->translate('admin.success_operation'));;
             } catch (\Exception $exception) {
@@ -211,7 +212,7 @@ class PostController extends AbstractController
      */
     public function delete(int $category, Request $request, Post $post): Response
     {
-        if(!$this->isGranted(PostVoter::FULL, $post) && !$this->isGranted(PostVoter::OWN, $post)){
+        if (!$this->isGranted(PostVoter::FULL, $post) && !$this->isGranted(PostVoter::OWN, $post)) {
             throw $this->createAccessDeniedException();
         }
 
@@ -221,14 +222,13 @@ class PostController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $id = $post->getId();
-                $title = $post->getTitle();
 
                 $em = $this->getDoctrine()->getManager();
                 $em->remove($post);
                 $em->flush();
 
                 $this->flashes->successMessage($this->adminTranslator->translate('admin.success_operation'));;
-                $this->crudLogger->createLog($id, $title);
+                $this->crudLogger->createLog(Post::class, CrudLogger::DeleteAction, $id);
 
             } catch (\Exception $exception) {
                 $this->flashes->errorMessage($exception->getMessage());

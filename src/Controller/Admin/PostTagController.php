@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use TwinElements\AdminBundle\Model\CrudControllerTrait;
+use TwinElements\Component\CrudLogger\CrudLogger;
 use TwinElements\PostBundle\Entity\PostTag\PostTag;
 use TwinElements\PostBundle\Form\PostTagType;
 use TwinElements\PostBundle\Repository\PostTagRepository;
@@ -60,7 +61,7 @@ class PostTagController extends AbstractController
                 $postTag->mergeNewTranslations();
                 $em->flush();
 
-                $this->crudLogger->createLog($postTag->getId(), $postTag->getTitle());
+                $this->crudLogger->createLog(PostTag::class, CrudLogger::CreateAction, $postTag->getId());
 
                 $this->flashes->successMessage($this->adminTranslator->translate('admin.success_operation'));;
 
@@ -101,7 +102,7 @@ class PostTagController extends AbstractController
             try {
                 $postTag->mergeNewTranslations();
                 $this->getDoctrine()->getManager()->flush();
-                $this->crudLogger->createLog($postTag->getId(), $postTag->getTitle());
+                $this->crudLogger->createLog(PostTag::class, CrudLogger::EditAction, $postTag->getId());
 
                 $this->flashes->successMessage($this->adminTranslator->translate('admin.success_operation'));;
             } catch (\Exception $exception) {
@@ -145,7 +146,7 @@ class PostTagController extends AbstractController
                 $em->flush();
 
                 $this->flashes->successMessage($this->adminTranslator->translate('admin.success_operation'));;
-                $this->crudLogger->createLog($id, $title);
+                $this->crudLogger->createLog(PostTag::class, CrudLogger::DeleteAction, $postTag->getId());
 
             } catch (\Exception $exception) {
                 $this->flashes->errorMessage($exception->getMessage());
