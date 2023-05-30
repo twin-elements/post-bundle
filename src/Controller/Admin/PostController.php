@@ -17,6 +17,7 @@ use TwinElements\PostBundle\Form\SearchPostType;
 use TwinElements\PostBundle\Repository\PostCategoryRepository;
 use TwinElements\PostBundle\Repository\PostRepository;
 use TwinElements\PostBundle\Security\PostVoter;
+use TwinElements\PostBundle\UrlGenerator\PostPreviewGeneratorInterface;
 use function Doctrine\ORM\QueryBuilder;
 
 /**
@@ -160,7 +161,7 @@ class PostController extends AbstractController
     /**
      * @Route("/{category}/{id}/edit", name="post_edit", methods="GET|POST")
      */
-    public function edit(int $category, Request $request, Post $post): Response
+    public function edit(int $category, Request $request, Post $post, PostPreviewGeneratorInterface $postPreviewGenerator): Response
     {
         if (!$this->isGranted(PostVoter::EDIT, $post) && !$this->isGranted(PostVoter::OWN, $post)) {
             throw $this->createAccessDeniedException();
@@ -204,6 +205,7 @@ class PostController extends AbstractController
             'entity' => $post,
             'form' => $form->createView(),
             'delete_form' => $deleteForm->createView(),
+            'preview_url' => $postPreviewGenerator->generatePreviewUrl($post)
         ]);
     }
 

@@ -14,3 +14,32 @@ post_admin:
         _admin_locale: '%admin_locale%'
     options: { i18n: false }
 ```
+
+## Preview url generator
+Create class `PostPreviewGenerator`
+```php
+class PostPreviewGenerator implements PostPreviewGeneratorInterface
+{
+    private RouterInterface $router;
+
+    public function __construct(RouterInterface $router)
+    {
+        $this->router = $router;
+    }
+
+    public function generatePreviewUrl(Post $post): string
+    {
+        return $this->router->generate('post', [
+            'id' => $post->getId(),
+            'slug' => $post->getSlug()
+        ]);
+    }
+}
+```
+
+in `service.yaml`
+```yaml
+services:
+    TwinElements\PostBundle\UrlGenerator\PostPreviewGeneratorInterface:
+        alias: 'App\PreviewUrlGenerator\PostPreviewGenerator'
+```

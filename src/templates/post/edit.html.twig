@@ -15,6 +15,11 @@
 {% endblock %}
 
 {% block right_sidebar %}
+
+    {% if preview_url %}
+        <a href="{{ preview_url }}" class="btn btn-primary" target="_blank">{{ "post.see_post"|translate_admin }}</a>
+    {% endif %}
+
     {{ block('changes_details') }}
 
     {{ block('delete_form') }}

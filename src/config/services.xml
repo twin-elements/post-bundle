@@ -7,12 +7,11 @@
     <services>
         <defaults autowire="true" autoconfigure="true"/>
 
-        <prototype namespace="TwinElements\PostBundle\" resource="../../../src/*"
-                   exclude="../../../src/{DependencyInjection,Entity,Tests}"/>
+        <prototype namespace="TwinElements\PostBundle\" resource="../../src/*"
+                   exclude="../../src/{DependencyInjection,Entity,Tests}"/>
 
-        <prototype namespace="TwinElements\PostBundle\Controller\Admin\" resource="../../../src/Controller/Admin/*">
+        <prototype namespace="TwinElements\PostBundle\Controller\Admin\" resource="../../src/Controller/Admin/*">
             <tag name="controller.service_arguments"/>
-<!--            <bind key="$adminLocale">%admin_locale%</bind>-->
         </prototype>
 
         <service id="TwinElements\PostBundle\AdminMenu">

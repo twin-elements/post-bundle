@@ -17,6 +17,7 @@ post:
   image_help: 'Zalecane wymiary okładki: %width%px x %height%px'
   title: Nazwa wpisu
   posts_list: Lista wpisów
+  see_post: Zobacz wpis
 
 post_tag:
   post_tags_list: Lista tagów
